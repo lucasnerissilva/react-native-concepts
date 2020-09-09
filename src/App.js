@@ -35,9 +35,17 @@ export default function App() {
 
     if (response.data) repository = response.data;
 
-    if (repositories.length > 1)
-      setRepositories([...repositories.filter(r => r.id !== id), repository]);
-    else if (repository) setRepositories([repository]);
+    // if (repositories.length > 1)
+    //   setRepositories([...repositories.filter(r => r.id !== id), repository]);
+    // else if (repository) setRepositories([repository]);
+
+    const updatedRepositories = repositories.map(r => {
+      if (r.id === id) return repository;
+
+      return r;
+    });
+
+    setRepositories(updatedRepositories);
   }
 
   return (
